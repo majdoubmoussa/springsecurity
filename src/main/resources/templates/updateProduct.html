@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorate="layout1"
+>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css" />
+    <title>Products</title>
 </head>
 <body>
-$END$
+<div layout:fragment="content1">
+    <h1>Products</h1>
+    <form th:action="@{/saveProduct}" th:object="${produit}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input class="form-control" type="text" th:field="*{nom}" />
+            <span class="text-bg-danger" th:errors="*{nom}"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Prix</label>
+            <input class="form-control" type="text" th:field="*{prix}" />
+            <span class="text-bg-danger" th:errors="*{prix}"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Quantite</label>
+            <input class="form-control" type="text" th:field="*{quantite}" />
+            <span class="text-bg-danger" th:errors="*{quantite}"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+
+
+</div>
+
 </body>
 </html>
